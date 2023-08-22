@@ -20,7 +20,13 @@ export default function Users() {
         return <div>Error during data fetching...</div>
     }
 
-    return <div>
-        {data.length}
-    </div>
+    const users = data.map(user => {
+        return <div key={user.id} className="mb-2 border rounded">
+            <div className="flex p-2 justify-between items-center cursor-pointer">
+                {user.name}
+            </div>
+        </div>
+    });
+
+    return <div>{users}</div>
 }
