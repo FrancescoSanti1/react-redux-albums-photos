@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUsers } from "../store";
+import { addUser, fetchUsers } from "../store";
 import Skeleton from "./Skeleton";
+import Button from "./Button";
 
 export default function Users() {
 
@@ -12,6 +13,10 @@ export default function Users() {
     useEffect(() => {
         dispatch(fetchUsers());
     }, []);
+
+    const handleUserAdd = () => {
+        dispatch(addUser());
+    };
 
     if (loading) {
         return <Skeleton times={6} className={"h-10 w-full"} />
@@ -28,5 +33,11 @@ export default function Users() {
         </div>
     });
 
-    return <div>{users}</div>
+    return <div>
+        <div className="flex justify-between m-3">
+            <h1 className="m-2 text-xl">Users</h1>
+            <Button variation={"primary"} onClick={handleUserAdd}>Add user</Button>
+        </div>
+        {users}
+    </div>
 }
