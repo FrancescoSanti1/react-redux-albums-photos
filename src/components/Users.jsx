@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, fetchUsers } from "../store";
 import Skeleton from "./Skeleton";
@@ -6,12 +6,19 @@ import Button from "./Button";
 
 export default function Users() {
 
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
     const dispatch = useDispatch();
 
-    const { data, loading, error } = useSelector(state => state.users);
+    const { data } = useSelector(state => state.users);
 
     useEffect(() => {
-        dispatch(fetchUsers());
+        setLoading(true);
+        dispatch(fetchUsers())
+            .unwrap()
+            .catch((err) => setError(err))
+            .finally(() => setLoading(false));
     }, []);
 
     const handleUserAdd = () => {
