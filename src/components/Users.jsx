@@ -20,26 +20,26 @@ export default function Users() {
         runAddUser();
     };
 
+    let content;
     if (loadingUsers) {
-        return <Skeleton times={6} className={"h-10 w-full"} />
-    }
-    if (loadingError) {
-        return <div>Error during data fetching...</div>
-    }
-
-    const users = data.map(user => {
-        return <div key={user.id} className="mb-2 border rounded">
-            <div className="flex p-2 justify-between items-center cursor-pointer">
-                {user.name}
+        content = <Skeleton times={6} className={"h-10 w-full"} />;
+    } else if (loadingError) {
+        content = <div>Error during data fetching...</div>;
+    } else {
+        content = data.map(user => {
+            return <div key={user.id} className="mb-2 border rounded">
+                <div className="flex p-2 justify-between items-center cursor-pointer">
+                    {user.name}
+                </div>
             </div>
-        </div>
-    });
+        });
+    }
 
     return <div>
-        <div className="flex justify-between m-3">
+        <div className="flex justify-between items-center m-3">
             <h1 className="m-2 text-xl">Users</h1>
             <Button loading={creatingUser} variation={"primary"} onClick={handleUserAdd}>Add user</Button>
         </div>
-        {users}
+        {content}
     </div>
 }
