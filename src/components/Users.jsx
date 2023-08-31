@@ -38,9 +38,7 @@ export default function Users() {
     return <div>
         <div className="flex justify-between m-3">
             <h1 className="m-2 text-xl">Users</h1>
-            <Button variation={"primary"} onClick={handleUserAdd}>Add user</Button>
-            {creatingUser && <div>Adding a user...</div>}
-            {creatingError && <div>Something went wrong!</div>}
+            <Button loading={creatingUser} variation={"primary"} onClick={handleUserAdd}>Add user</Button>
         </div>
         {users}
     </div>
