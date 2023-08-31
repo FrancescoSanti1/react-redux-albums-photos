@@ -6,29 +6,35 @@ import Button from "./Button";
 
 export default function Users() {
 
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [loadingUsers, setLoadingUsers] = useState(false);
+    const [loadingError, setLoadingError] = useState(null);
+    const [creatingUsers, setCreatingUsers] = useState(false);
+    const [creatingError, setCreatingError] = useState(null);
 
     const dispatch = useDispatch();
 
     const { data } = useSelector(state => state.users);
 
     useEffect(() => {
-        setLoading(true);
+        setLoadingUsers(true);
         dispatch(fetchUsers())
             .unwrap()
-            .catch((err) => setError(err))
-            .finally(() => setLoading(false));
+            .catch((err) => setLoadingError(err))
+            .finally(() => setLoadingUsers(false));
     }, []);
 
     const handleUserAdd = () => {
-        dispatch(addUser());
+        setCreatingUsers(true);
+        dispatch(addUser())
+            .unwrap()
+            .catch((err) => setCreatingError(err))
+            .finally(() => setCreatingUsers(false));
     };
 
-    if (loading) {
+    if (loadingUsers) {
         return <Skeleton times={6} className={"h-10 w-full"} />
     }
-    if (error) {
+    if (loadingError) {
         return <div>Error during data fetching...</div>
     }
 
@@ -44,6 +50,8 @@ export default function Users() {
         <div className="flex justify-between m-3">
             <h1 className="m-2 text-xl">Users</h1>
             <Button variation={"primary"} onClick={handleUserAdd}>Add user</Button>
+            {creatingUsers && <div>Adding a user...</div>}
+            {creatingError && <div>Something went wrong!</div>}
         </div>
         {users}
     </div>
