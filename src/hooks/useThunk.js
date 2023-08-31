@@ -6,9 +6,9 @@ export default function useThunk(thunk) {
     const [error, setError] = useState(null);
     const dispatch = useDispatch();
 
-    const runThunk = useCallback(() => {
+    const runThunk = useCallback((arg) => {
         setLoading(true);
-        dispatch(thunk())
+        dispatch(thunk(arg))
             .unwrap()
             .catch((e) => setError(e))
             .finally(() => setLoading(false));
