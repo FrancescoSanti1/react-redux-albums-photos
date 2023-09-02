@@ -1,10 +1,12 @@
-import { useGetAlbumsQuery } from "../store"
+import { useAddAlbumMutation, useGetAlbumsQuery } from "../store"
 import Skeleton from "./Skeleton";
+import Button from "./Button";
 import ExpandablePanel from "./ExpandablePanel";
 
 export default function Albums({ user }) {
 
     const { data, isLoading, error } = useGetAlbumsQuery(user);
+    const [addAlbum, results] = useAddAlbumMutation();
 
     let content;
     if (isLoading) {
@@ -20,8 +22,15 @@ export default function Albums({ user }) {
         })
     }
 
+    const handleClick = () => {
+        addAlbum(user);
+    }
+
     return <div>
-        <div>Albums by {user.name}</div>
+        <div>
+            Albums by {user.name}
+            <Button variation={"primary"} onClick={handleClick}>Add album</Button>
+        </div>
         <div>{content}</div>
     </div>
 }
