@@ -1,10 +1,18 @@
 import { faker } from "@faker-js/faker";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+const sleep = (seconds) => new Promise(resolve => {
+    setTimeout(resolve, seconds * 1000);
+});
+
 export const albumsApi = createApi({
     reducerPath: "albums",
     baseQuery: fetchBaseQuery({
-        baseUrl: "http://localhost:3005"
+        baseUrl: "http://localhost:3005",
+        fetchFn: async (...args) => {
+            await sleep(2);
+            return fetch(...args);
+        }
     }),
     endpoints(builder) {
         return {
