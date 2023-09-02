@@ -18,7 +18,7 @@ export const albumsApi = createApi({
                         method: "GET"
                     }
                 },
-                providesTags: ["Album"]
+                providesTags: (result, error, user) => [{ type: "Album", id: user.id }]
             }),
             addAlbum: builder.mutation({
                 query: (user) => {
@@ -28,7 +28,7 @@ export const albumsApi = createApi({
                         body: { userId: user.id, title: faker.commerce.productName() }
                     }
                 },
-                invalidatesTags: ["Album"]
+                invalidatesTags: (result, error, user) => [{ type: "Album", id: user.id }]
             })
         }
     }

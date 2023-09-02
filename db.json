@@ -26,6 +26,46 @@
       "id": 1,
       "title": "Great album",
       "userId": 2
+    },
+    {
+      "userId": 2,
+      "title": "Handcrafted Cotton Salad",
+      "id": 2
+    },
+    {
+      "userId": 2,
+      "title": "Incredible Metal Fish",
+      "id": 3
+    },
+    {
+      "userId": 2,
+      "title": "Recycled Granite Pants",
+      "id": 4
+    },
+    {
+      "userId": 3,
+      "title": "Handcrafted Fresh Chicken",
+      "id": 5
+    },
+    {
+      "userId": 4,
+      "title": "Practical Soft Chips",
+      "id": 6
+    },
+    {
+      "userId": 3,
+      "title": "Modern Fresh Shirt",
+      "id": 7
+    },
+    {
+      "userId": 3,
+      "title": "Practical Frozen Chair",
+      "id": 8
+    },
+    {
+      "userId": 2,
+      "title": "Refined Fresh Bike",
+      "id": 9
     }
   ],
   "photos": []
