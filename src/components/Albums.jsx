@@ -1,7 +1,7 @@
 import { useAddAlbumMutation, useGetAlbumsQuery } from "../store"
 import Skeleton from "./Skeleton";
 import Button from "./Button";
-import ExpandablePanel from "./ExpandablePanel";
+import Album from "./Album";
 
 export default function Albums({ user }) {
 
@@ -14,12 +14,7 @@ export default function Albums({ user }) {
     } else if (error) {
         content = <div>Error during loading albums...</div>
     } else {
-        content = data.map(album => {
-            const header = <div>{album.title}</div>
-            return <ExpandablePanel key={album.id} header={header}>
-                Photos here...
-            </ExpandablePanel>
-        })
+        content = data.map(album => <Album key={album.id} album={album} />);
     }
 
     const handleClick = () => {
