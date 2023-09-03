@@ -27,6 +27,6 @@ export default function Photos({ album }) {
             <h3 className="text-lg font-bold">Photos in {album.title}</h3>
             <Button variation={"primary"} loading={results.isLoading} onClick={handleAddPhoto}>Add photo</Button>
         </div>
-        <div>{content}</div>
+        <div className="mx-8 flex flex-wrap justify-start">{content}</div>
     </div>
 }
