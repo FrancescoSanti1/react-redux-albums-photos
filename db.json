@@ -73,6 +73,11 @@
       "albumId": 7,
       "url": "https://picsum.photos/seed/vz26RPbT/150/150",
       "id": 1
+    },
+    {
+      "albumId": 7,
+      "url": "https://loremflickr.com/150/150?lock=3306257622499328",
+      "id": 2
     }
   ]
 }
