@@ -5,11 +5,11 @@ import Album from "./Album";
 
 export default function Albums({ user }) {
 
-    const { data, isLoading, error } = useGetAlbumsQuery(user);
+    const { data, isFetching, error } = useGetAlbumsQuery(user);
     const [addAlbum, results] = useAddAlbumMutation();
 
     let content;
-    if (isLoading) {
+    if (isFetching) {
         content = <Skeleton times={3} className={"h-10 w-full"}></Skeleton>
     } else if (error) {
         content = <div>Error during loading albums...</div>
