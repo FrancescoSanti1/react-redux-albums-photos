@@ -4,7 +4,7 @@ import Albums from "./Albums";
 import Button from "./Button";
 import ExpandablePanel from "./ExpandablePanel";
 
-export default function ListItem({ user }) {
+export default function User({ user }) {
 
     const [runDeleteUser, deleting, error] = useThunk(deleteUser);
 

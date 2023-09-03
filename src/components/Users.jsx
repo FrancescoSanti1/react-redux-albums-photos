@@ -4,7 +4,7 @@ import { addUser, fetchUsers } from "../store";
 import Skeleton from "./Skeleton";
 import Button from "./Button";
 import useThunk from "../hooks/useThunk";
-import ListItem from "./ListItem";
+import User from "./User";
 
 export default function Users() {
 
@@ -27,7 +27,7 @@ export default function Users() {
     } else if (loadingError) {
         content = <div>Error during data fetching...</div>;
     } else {
-        content = data.map(user => <ListItem key={user.id} user={user} />);
+        content = data.map(user => <User key={user.id} user={user} />);
     }
 
     return <div>
