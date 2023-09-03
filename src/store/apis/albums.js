@@ -26,7 +26,13 @@ export const albumsApi = createApi({
                         method: "GET"
                     }
                 },
-                providesTags: (result, error, user) => [{ type: "Album", id: user.id }]
+                providesTags: (result, error, user) => {
+                    const tags = result.map(album => {
+                        return { type: "Album", id: album.id }
+                    });
+                    tags.push({ type: "UserAlbums", id: user.id });
+                    return tags;
+                }
             }),
             addAlbum: builder.mutation({
                 query: (user) => {
@@ -36,7 +42,7 @@ export const albumsApi = createApi({
                         body: { userId: user.id, title: faker.commerce.productName() }
                     }
                 },
-                invalidatesTags: (result, error, user) => [{ type: "Album", id: user.id }]
+                invalidatesTags: (result, error, user) => [{ type: "UserAlbums", id: user.id }]
             }),
             deleteAlbum: builder.mutation({
                 query: (album) => {
@@ -45,7 +51,7 @@ export const albumsApi = createApi({
                         method: "DELETE"
                     }
                 },
-                invalidatesTags: (result, error, album) => [{ type: "Album", id: album.userId }]
+                invalidatesTags: (result, error, album) => [{ type: "Album", id: album.id }]
             })
         }
     }
