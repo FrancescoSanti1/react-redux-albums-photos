@@ -1,6 +1,7 @@
 import { useDeleteAlbumMutation } from "../store/apis/albums"
 import Button from "./Button"
 import ExpandablePanel from "./ExpandablePanel"
+import Photos from "./Photos";
 
 export default function Album({ album }) {
 
@@ -20,6 +21,6 @@ export default function Album({ album }) {
     </>
 
     return <ExpandablePanel key={album.id} header={header}>
-        Photos here...
+        <Photos album={album} />
     </ExpandablePanel>
 }

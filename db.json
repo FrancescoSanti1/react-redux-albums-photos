@@ -68,5 +68,11 @@
       "id": 9
     }
   ],
-  "photos": []
+  "photos": [
+    {
+      "albumId": 7,
+      "url": "https://picsum.photos/seed/vz26RPbT/150/150",
+      "id": 1
+    }
+  ]
 }
